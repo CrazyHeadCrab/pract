@@ -1,0 +1,58 @@
+﻿<Page x:Class="rentmall.pages.adm.allempA"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:rentmall.pages.adm"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="allempA">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Text="Сотрудники"  FontSize="26" FontWeight="Heavy" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
+        <ListBox x:Name="emplist" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="DeepSkyBlue" BorderBrush="Azure" BorderThickness="2" Margin="5" Width="200" Height="250" MouseRightButtonDown="emplist_MouseRightButtonDown" MouseLeftButtonDown="emplist_MouseLeftButtonDown">
+                        <StackPanel Orientation="Vertical">
+                            
+                            <Image Source="{Binding Path=pic}" Width="150" Height="100"/>
+                            <TextBlock Text="{Binding Path=name}"/>
+                            <TextBlock Text="{Binding Path=fam}"/>
+                            <TextBlock Text="{Binding Path=pat}"/>
+                            <TextBlock Text="{Binding Path=log}"/>
+                            <TextBlock Text="{Binding Path=phonr}"/>
+                            <TextBlock Text="{Binding Path=gender}"/>
+                            <TextBlock Text="{Binding Path=role}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+
+        </ListBox>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  Grid.Column="0" Grid.Row="2">
+            <TextBlock Text="Фамилия" HorizontalAlignment="Center"/>
+            <TextBox x:Name="fam_box" Width="100" Height="30" KeyUp="fam_box_KeyUp" />
+        </StackPanel>
+        <Popup x:Name="popdel"  Placement="MousePoint" StaysOpen="True" >
+            <Button x:Name="del_but" Content="удалить"  Click="del_but_Click"/>
+        </Popup>
+        <Button x:Name="new_empbut"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Новый сотрудник" Width="100" Height="30"  Click="new_empbut_Click"/>
+    </Grid>
+</Page>

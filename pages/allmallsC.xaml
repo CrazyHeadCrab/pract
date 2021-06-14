@@ -1,0 +1,72 @@
+﻿<Page x:Class="rentmall.pages.allmallsC"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:rentmall.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="allmallsC">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock Text="ТЦ"  FontSize="26" FontWeight="Heavy" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
+        <ListBox x:Name="malllist" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="DeepSkyBlue" BorderBrush="Azure" BorderThickness="2" Margin="5" Width="200" Height="200" MouseRightButtonDown="malllist_MouseRightButtonDown" MouseLeftButtonDown="malllist_MouseLeftButtonDown">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Path=name}" HorizontalAlignment="Center"/>
+                            <Image Source="{Binding Path=pic}" Width="150" Height="100"/>
+                            <TextBlock Text="{Binding Path=state}"/>
+                            <TextBlock Text="{Binding Path=town}"/>
+                            <TextBlock Text="{Binding Path=price}"/>
+                            <TextBlock Text="{Binding Path=count_lvl}"/>
+                            <TextBlock Text="{Binding Path=coef}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            
+        </ListBox>
+        <Button x:Name="stat_but" Content="Статус" Grid.Column="0" Grid.Row="2" Width="100" Height="30" Click="stat_but_Click"/>
+        <Button x:Name="town_but" Content="город" Grid.Column="1" Grid.Row="2" Width="100" Height="30" Click="town_but_Click"/>
+        <Popup x:Name="stats"  Placement="MousePoint" StaysOpen="True" >
+            <ListBox x:Name="stats_list" SelectionChanged="stats_list_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=name}" Width="100"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Popup>
+        <Popup x:Name="townspop"  Placement="MousePoint" StaysOpen="True" >
+            <ListBox x:Name="towns_list" SelectionChanged="towns_list_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Path=name}" Width="100"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Popup>
+        <Popup x:Name="popdel"  Placement="MousePoint" StaysOpen="True" >
+            <Button x:Name="del_but" Content="удалить"  Click="del_but_Click"/>
+        </Popup>
+        <Button x:Name="new_mallbut"  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="Новый ТЦ" Width="100" Height="30"  Click="new_mallbut_Click"/>
+    </Grid>
+</Page>
